@@ -32,12 +32,12 @@ const toggleColorMode = () => {
 
 <template>
   <div class="w-full bg-green-500">
-    <div class="p-4 px-8 flex justify-between items-center mx-auto max-w-7xl">
+    <div class=" p-2 2xl:p-4 px-8 flex justify-between items-center mx-auto max-w-7xl">
       <!-- Logo or Title -->
-      <h1 class="text-white text-2xl font-bold">Kf-LeaderBoard</h1>
+      <h1 class="text-white text-lg md:text-xl 2xl:text-2xl font-bold">Kf-LeaderBoard</h1>
 
       <!-- kijani logo (hidden on small screens) -->
-      <img src="/kijaniforestry-white.png" class="h-12 hidden md:block" alt="">
+      <img src="/kijaniforestry-white.png" class="h-6 2xl:h-12 hidden md:block" alt="">
 
       <!-- Hamburger Menu (visible on small screens) -->
       <button @click="toggleMenu" class="text-white md:hidden">
@@ -49,7 +49,7 @@ const toggleColorMode = () => {
       <!-- Desktop Menu (hidden on small screens) -->
       <div class="hidden md:flex items-center space-x-6">
         <button @click="toggleColorMode"
-          class="text-white font-bold text-2xl">
+          class="text-white font-bold text-lg 2xl:text-2xl">
           <span v-if="colorMode.value == 'dark'" class="flex items-center gap-4">
             <i class="fa fa-sun-o"></i>
           </span>
@@ -61,14 +61,14 @@ const toggleColorMode = () => {
         <!-- User Info Dropdown -->
         <div class="relative group">
           <button class="flex items-center space-x-2 text-white focus:outline-none">
-            <i class="w-10 h-10 rounded-full fa fa-user bg-gray-800 p-3 text-center"></i>
-            <span class="hidden md:inline">John Doe</span>
+            <i class="w-6 h-6 2xl:w-10 2xl:h-10 rounded-full fa fa-user bg-gray-800 p-1 2xl:p-3 text-center"></i>
+            <span class="hidden md:inline text-sm 2xl:text-md">John Doe</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
           <!-- Dropdown content -->
-          <div class="absolute hidden group-hover:block right-0 mt-1 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-2 z-20">
+          <div class="absolute hidden group-hover:block right-0 mt-0 2xl:mt-1 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-2 z-20 text-sm 2xl:text-md">
             <button class="block px-4 py-2 text-gray-700 w-full dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Parish Coordinator</button>
             <button @click="logout" class="block px-4 py-2 text-gray-700 w-full dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</button>
           </div>
