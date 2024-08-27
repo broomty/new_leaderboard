@@ -2,6 +2,13 @@
 const colorMode = useColorMode();
 colorMode.preference = 'system';
 
+useSeoMeta({
+  title: 'Login | Kijani leaderboard',
+  description: 'Login with your email to view parish Performance',
+  ogTitle: 'Login | Kijani leaderboard',
+  ogDescription: 'Login with your email to view parish Performance',
+})
+
 const serverUrl = 'https://leaderboard-auth.vercel.app';
 
 const verifying = ref(false);
