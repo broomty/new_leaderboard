@@ -2,7 +2,7 @@
 const colorMode = useColorMode();
 colorMode.preference = 'system';
 
-const serverUrl = 'http://localhost:5000';
+const serverUrl = 'https://leaderboard-auth.vercel.app';
 
 const verifying = ref(false);
 
