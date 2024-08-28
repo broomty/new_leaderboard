@@ -22,11 +22,14 @@ onMounted(() => {
     <LoadingScreen v-if="isLoading" />
     <div v-else class="flex flex-col dark:bg-gray-900 min-h-screen">
         <DashboardHeader />
+        <DashboardFilters />
         <div class="flex items-center justify-center">
+
             
             <div>
                 <!-- Main content to display after loading -->
                 <h1 class="text-red-500 text-7xl">Hello world</h1>
+
             </div>
         </div>
     </div>
