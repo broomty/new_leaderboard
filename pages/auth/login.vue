@@ -1,4 +1,5 @@
 <script setup>
+const store = useCounterStore()
 const colorMode = useColorMode();
 colorMode.preference = 'system';
 
@@ -76,6 +77,7 @@ const toggleColorMode = () => {
 
 <template>
   <div class="flex justify-end p-8 px-12 absolute right-0 top-0 w-full">
+    <h1>{{ store.count }}</h1>
     <button @click="toggleColorMode"
       class="text-white font-bold dark:bg-gray-800 p-3 px-6 rounded-2xl hover:bg-gray-200 dark-hover:bg-gray-100 transition-colors duration-300 ease-in-out">
       <span v-if="colorMode.value === 'dark'" class="flex items-center gap-4">
