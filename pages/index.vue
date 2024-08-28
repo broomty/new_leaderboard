@@ -3,9 +3,9 @@ definePageMeta({
     middleware: 'auth'
 })
 useSeoMeta({
-  title: 'Home | Kijani leaderboard',
+  title: 'Home - Kijani leaderboard',
   description: 'Use filters to view ranking based on activities',
-  ogTitle: 'Home | Kijani leaderboard',
+  ogTitle: 'Home - Kijani leaderboard',
   ogDescription: 'Use filters to view ranking based on activities',
 })
 

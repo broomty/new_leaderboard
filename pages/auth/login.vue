@@ -4,9 +4,9 @@ const colorMode = useColorMode();
 colorMode.preference = 'system';
 
 useSeoMeta({
-  title: 'Login | Kijani leaderboard',
+  title: 'Login - Kijani leaderboard',
   description: 'Login with your email to view parish Performance',
-  ogTitle: 'Login | Kijani leaderboard',
+  ogTitle: 'Login - Kijani leaderboard',
   ogDescription: 'Login with your email to view parish Performance',
 })
 
