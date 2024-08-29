@@ -1,4 +1,6 @@
 <script setup>
+const store = useCounterStore();
+
 definePageMeta({
     middleware: 'auth'
 })
@@ -14,24 +16,27 @@ const isLoading = ref(true);
 onMounted(() => {
     setTimeout(() => {
         isLoading.value = false;
-    }, 10000);
+    }, 4000);
 });
 </script>
 
 <template>
     <LoadingScreen v-if="isLoading" />
     <div v-else class="flex flex-col dark:bg-gray-900 min-h-screen">
+        <button @click="store.fetchData">fetch</button>
         <DashboardHeader />
-        <DashboardFilters />
-        <div class="flex items-center justify-center">
+        <div class="relative flex size-full min-h-screen flex-col bg-[#f8fcfa] dark:bg-[#1e293b] group/design-root overflow-x-hidden"
+        style='font-family: "Work Sans", "Noto Sans", sans-serif;'>
+        <div class="layout-container flex h-full grow flex-col">
 
-            
-            <div>
-                <!-- Main content to display after loading -->
-                <h1 class="text-red-500 text-7xl">Hello world</h1>
-
+            <div class="px-40 flex flex-1 justify-center py-5">
+                <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+                    <DashboardFilters />
+                    <DashboardTable />
+                </div>
             </div>
         </div>
+    </div>
     </div>
 
 </template>
