@@ -27,7 +27,7 @@ const login = async () => {
 
   verifying.value = true;
   try {
-    const response = await fetch(`${serverUrl}/api/auth/login`, {
+    const response = await fetch(`${serverUrl}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
