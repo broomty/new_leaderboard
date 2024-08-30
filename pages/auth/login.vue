@@ -1,4 +1,5 @@
 <script setup>
+const colors = useModeStore()
 const colorMode = useColorMode();
 colorMode.preference = 'system';
 
@@ -17,7 +18,7 @@ const errMsg = ref('');
 const email = ref('');
 
 const login = async () => {
-  console.log(serverUrl);
+  console.log(colors.colorMode)
   //validate email
   const validEmail = validateEmail(email.value);
   if (email.value == '' || !validEmail) {

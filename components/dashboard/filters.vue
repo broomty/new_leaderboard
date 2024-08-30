@@ -42,5 +42,6 @@ const activity = ref('potted');
                 <option>This Week</option>
             </select>
         </div>
+        <ModalsGroup />
     </div>
 </template>

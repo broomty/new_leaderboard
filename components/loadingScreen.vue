@@ -1,10 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
 
-// Reactive property to manage the theme state
-const isDarkMode = ref(false);
-
-// Watch for changes in dark mode and update the `class` attribute on the `html` element
 
 </script>
 
