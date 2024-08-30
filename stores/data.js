@@ -36,7 +36,8 @@ export const useCounterStore = defineStore("counter", () => {
         parishes.forEach((parish) => {
           const parishName = parish.fields["Parish_Name"];
           const pc = parish.fields["PC-Name"];
-          assignedGroups[parishName] = { coordinator: pc, groups: {}, total: 0 }; // Initialize parish with groups and total
+          const branch = parish.fields["Branch"];
+          assignedGroups[parishName] = { coordinator: pc,branch: branch, groups: {}, total: 0 }; // Initialize parish with groups and total
 
           groupsData.forEach((group) => {
             if (group.fields["Parish Name"] === parishName) {
@@ -72,6 +73,7 @@ export const useCounterStore = defineStore("counter", () => {
       .map((parishName) => ({
         parish: parishName,
         coordinator: assignedGroups[parishName].coordinator,
+        branch: assignedGroups[parishName].branch,
         total: assignedGroups[parishName].total,
         groups: assignedGroups[parishName].groups,
       }))
