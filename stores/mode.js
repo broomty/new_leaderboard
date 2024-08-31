@@ -1,15 +1,18 @@
 import { defineStore } from "pinia";
-import { useColorMode } from '#imports';
+import { useColorMode } from '@nuxtjs/color-mode';
 
 export const useModeStore = defineStore('mode', () => {
   const { colorMode } = useColorMode();
+  
+  const mode = ref(colorMode.preference);
 
-  const toggleMode = () => {
-    colorMode.value = colorMode.value === 'light' ? 'dark' : 'light';
-  };
+  const setMode = (value) => {
+    mode.value = value;
+    colorMode.preference = value;
+  }
 
   return {
-    colorMode,
-    toggleMode,
-  };
+    mode,
+    setMode
+  }
 })

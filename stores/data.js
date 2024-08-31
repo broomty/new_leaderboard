@@ -6,9 +6,15 @@ const serverUrl = "https://leaderboard-auth.vercel.app";
 //const serverUrl = process.env.API_SERVER_URL || 'http://localhost:5000';
 
 export const useCounterStore = defineStore("counter", () => {
+  const userData = ref({});
   const rankedParishes = ref([]);
   const activity = ref("Potted");
   const loadingData = ref(false);
+
+  //function to add userData
+  const addUserData = (data) => {
+    userData.value = data;
+  };
 
   // Function to fetch data from API
   const fetchData = async () => {
@@ -17,8 +23,6 @@ export const useCounterStore = defineStore("counter", () => {
     loadingData.value = true;
 
     try {
-      console.log("Fetching data with token:", userToken);
-
       // Fetch parishes
       const response = await fetch(`${serverUrl}/api/parishes`, {
         method: "GET",
@@ -50,7 +54,12 @@ export const useCounterStore = defineStore("counter", () => {
             const parishName = parish.fields["Parish Name"];
             const pc = parish.fields["PC-Name"];
             const branch = parish.fields["Branch"];
-            assignedGroups[parishName] = { coordinator: pc, branch: branch, groups: {}, total: 0 };
+            assignedGroups[parishName] = {
+              coordinator: pc,
+              branch: branch,
+              groups: {},
+              total: 0,
+            };
 
             groupsData.forEach((group) => {
               if (group.fields["Parish"] === parishID) {
@@ -74,7 +83,8 @@ export const useCounterStore = defineStore("counter", () => {
                 };
 
                 // Accumulate total based on activity
-                assignedGroups[parishName].total += group.fields[`Total ${activity.value}`];
+                assignedGroups[parishName].total +=
+                  group.fields[`Total ${activity.value}`];
               }
             });
           });
@@ -118,5 +128,12 @@ export const useCounterStore = defineStore("counter", () => {
     fetchData();
   });
 
-  return { rankedParishes, activity, fetchData, loadingData };
+  return {
+    rankedParishes,
+    activity,
+    userData,
+    fetchData,
+    loadingData,
+    addUserData,
+  };
 });
