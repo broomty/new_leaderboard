@@ -45,6 +45,8 @@ const login = async () => {
       const data = await response.json();
       const tokenCookie = useCookie('token');
       tokenCookie.value = data.token;
+      //simulate a delay to show the loading spinner
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Wait for the cookie to be set and then fetch data
       await store.fetchData();

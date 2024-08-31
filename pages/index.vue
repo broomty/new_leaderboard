@@ -24,7 +24,6 @@ const handleConfirm = () => {
 <template>
     <LoadingScreen v-if="isLoading" />
     <div v-else class="flex flex-col dark:bg-gray-900 min-h-screen">
-        <button @click="store.fetchData">fetch</button>
         <DashboardHeader />
         <div class="relative flex size-full min-h-screen flex-col bg-[#f8fcfa] dark:bg-[#1e293b] group/design-root overflow-x-hidden"
             style='font-family: "Work Sans", "Noto Sans", sans-serif;'>
