@@ -21,9 +21,9 @@ const logout = () => {
 <template>
   <div class="flex flex-col dark:bg-gray-900 min-h-screen">
     <div class="w-full bg-[#265E3C]">
-      <div class="p-3 2xl:p-4 px-8 flex justify-between items-center mx-auto max-w-7xl">
+      <div class="p-3 2xl:p-4 px-8 flex flex-row-reverse md:flex-row justify-between items-center mx-auto max-w-7xl">
         <!-- Kijani logo (hidden on small screens) -->
-        <img src="/kijaniforestry-white.png" class="h-8 2xl:h-12 hidden md:block" alt="">
+        <img src="/kijaniforestry-white.png" class="h-8 2xl:h-12 md:block" alt="">
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center gap-4 text-white">
@@ -32,12 +32,9 @@ const logout = () => {
         </div>
 
         <!-- Hamburger Menu for Mobile -->
-        <button @click="toggleMenu" class="text-white md:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M3.75 5.25h16.5M3.75 12h16.5m-16.5 6.75h16.5" />
-          </svg>
+        <button @click="toggleMenu" class="text-white text-xl md:hidden">
+          <i v-if="!isMenuOpen" class="fa fa-bars"></i>
+          <i v-else class="fa fa-times"></i>
         </button>
 
         <!-- User Info Dropdown for Desktop -->
@@ -73,16 +70,20 @@ const logout = () => {
       </div>
 
       <!-- Mobile Menu (visible on small screens when open) -->
-      <div v-if="isMenuOpen" class="md:hidden px-8 py-4 space-y-4 bg-green-600">
+      <div v-if="isMenuOpen" class="md:hidden px-8 py-4 space-y-4 bg-white">
         <!-- User Info and Menu Links -->
-        <div>
-          <div class="flex items-center space-x-2 text-white">
+        <div class="text-center shadow-lg w-full">
+          <div class="flex flex-col items-center space-x-2">
             <i class="w-8 h-8 rounded-full fa fa-user bg-gray-800 p-2 text-center"></i>
             <span>{{ userData.firstName }} {{ userData.lastName }}</span>
           </div>
           <div class="mt-4 space-y-2">
-            <button class="block text-gray-200 hover:bg-green-500 px-4 py-2 rounded">{{ userData.email }}</button>
-            <button @click="logout" class="block text-gray-200 hover:bg-green-500 px-4 py-2 rounded">Logout</button>
+            <p class="block text-gray-900 hover:bg-green-500 px-4 py-2 rounded">{{ userData.email }}</p>
+            <p class="text-green-500 text-lg dark:text-green-400">{{ userData.role }}</p>
+            <button @click="logout"
+              class="block px-4 py-2 text-red-700 w-full dark:text-red-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+              <i class="fa fa-sign-out"></i> Logout
+            </button>
           </div>
         </div>
       </div>
