@@ -2,7 +2,8 @@
 const store = useCounterStore();
 
 definePageMeta({
-    middleware: 'auth'
+    middleware: 'auth',
+    colorMode: 'light',
 });
 useSeoMeta({
     title: 'Home - Kijani leaderboard',

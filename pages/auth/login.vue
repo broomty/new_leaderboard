@@ -1,8 +1,11 @@
 <script setup>
 const store = useCounterStore();
-const colors = useModeStore()
 const colorMode = useColorMode();
-colorMode.preference = 'system';
+colorMode.preference = 'light';
+
+definePageMeta({
+  colorMode: 'light',
+})
 
 useSeoMeta({
   title: 'Login - Kijani leaderboard',
@@ -20,7 +23,6 @@ const errMsg = ref('');
 const email = ref('');
 
 const login = async () => {
-  console.log(colors.colorMode);
   
   // Validate email
   const validEmail = validateEmail(email.value);
@@ -73,24 +75,24 @@ const validateEmail = (email) => {
 }
 
 //function to toggle colorMode
-const toggleColorMode = () => {
-  if (colorMode.preference === 'system') {
-    if(colorMode.value === 'dark') {
-      colorMode.preference = 'light';
-    } else {
-      colorMode.preference = 'dark';
-    }
-  } else {
-    colorMode.preference = 'system'
-  }
-}
+// const toggleColorMode = () => {
+//   if (colorMode.preference === 'system') {
+//     if(colorMode.value === 'dark') {
+//       colorMode.preference = 'light';
+//     } else {
+//       colorMode.preference = 'dark';
+//     }
+//   } else {
+//     colorMode.preference = 'system'
+//   }
+// }
 
 
 </script>
 
 <template>
   <div class="flex justify-end p-8 px-12 absolute right-0 top-0 w-full">
-    <button @click="toggleColorMode"
+    <!-- <button @click="toggleColorMode"
       class="text-white font-bold dark:bg-gray-800 p-3 px-6 rounded-2xl hover:bg-gray-200 dark-hover:bg-gray-100 transition-colors duration-300 ease-in-out">
       <span v-if="colorMode.value === 'dark'" class="flex items-center gap-4">
         <i class="fa fa-sun-o text-xl"></i>
@@ -101,22 +103,22 @@ const toggleColorMode = () => {
         <i class="fa fa-moon-o text-xl"></i>
         <span>Dark Mode</span>
       </span>
-    </button>
+    </button> -->
   </div>
 
 
   <div class="bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
     <!-- logo -->
     <div class="flex flex-col items-center justify-center mb-12">
-      <img v-if="colorMode.value === 'dark'" src="/kijaniforestry-white.png" class="h-12 mb-6" alt="">
-      <img v-else src="/kijani-logo-name.png" alt="Logo" class="h-12 mb-6" />
+      <img v-if="colorMode.value !== 'dark'" src="/kijani-logo-name.png" class="h-12 mb-6" alt="">
+      <img v-else src="/kijaniforestry-white.png" alt="Logo" class="h-12 mb-6" />
       <h1 class="text-xl text-green-500 mt-2 dark:text-green-400">Performance LeaderBoard</h1>
-    </div>
-    <div v-if="errMsg != ''" class="border border-red-500 p-4 m-2 w-96 rounded-lg bg-white dark:bg-gray-800">
-      <p class="text-red-500">{{ errMsg }}</p>
     </div>
     <div class="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md">
       <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800 dark:text-white text-center">Login</h2>
+      <div v-if="errMsg != ''" class="border border-red-500 p-2 m-2 w-96 rounded-lg bg-red-100 dark:bg-gray-800">
+      <p class="text-red-500">{{ errMsg }}</p>
+    </div>
       <form action="#" method="POST" @submit.prevent>
         <div class="mb-4">
           <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label>

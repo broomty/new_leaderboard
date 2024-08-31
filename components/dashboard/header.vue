@@ -18,17 +18,17 @@ const logout = () => {
   navigateTo('/auth/login');
 }
 //function to toggle colorMode
-const toggleColorMode = () => {
-  if (colorMode.preference === 'system') {
-    if (colorMode.value === 'dark') {
-      colorMode.preference = 'light';
-    } else {
-      colorMode.preference = 'dark';
-    }
-  } else {
-    colorMode.preference = 'system'
-  }
-}
+// const toggleColorMode = () => {
+//   if (colorMode.preference === 'system') {
+//     if (colorMode.value === 'dark') {
+//       colorMode.preference = 'light';
+//     } else {
+//       colorMode.preference = 'dark';
+//     }
+//   } else {
+//     colorMode.preference = 'system'
+//   }
+// }
 </script>
 
 <template>
@@ -50,14 +50,14 @@ const toggleColorMode = () => {
 
       <!-- Desktop Menu (hidden on small screens) -->
       <div class="hidden md:flex items-center space-x-6">
-        <button @click="toggleColorMode" class="text-white font-bold text-lg 2xl:text-2xl">
+        <!-- <button @click="toggleColorMode" class="text-white font-bold text-lg 2xl:text-2xl">
           <span v-if="colorMode.value == 'dark'" class="flex items-center gap-4">
             <i class="fa fa-sun-o"></i>
           </span>
           <span v-else class="flex items-center gap-4 ">
             <i class="fa fa-moon-o"></i>
           </span>
-        </button>
+        </button> -->
 
         <!-- User Info Dropdown -->
         <div class="relative group">
@@ -91,7 +91,7 @@ const toggleColorMode = () => {
 
     <!-- Mobile Menu (visible on small screens when open) -->
     <div v-if="isMenuOpen" class="md:hidden px-8 py-4 space-y-4 bg-green-600">
-      <button @click="colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark'"
+      <!-- <button @click="colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark'"
         class="text-white font-bold text-xl">
         <span v-if="colorMode.preference === 'dark'" class="flex items-center gap-4">
           <i class="fa fa-sun-o"></i> Light Mode
@@ -99,7 +99,7 @@ const toggleColorMode = () => {
         <span v-else class="flex items-center gap-4 text-black">
           <i class="fa fa-moon-o"></i> Dark Mode
         </span>
-      </button>
+      </button> -->
 
       <!-- User Info and Menu Links -->
       <div>
