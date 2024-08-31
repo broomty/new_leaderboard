@@ -96,7 +96,6 @@ export const useCounterStore = defineStore(
               });
             });
 
-            console.log(assignedGroups);
             // Rank parishes
             rankParishes(assignedGroups);
           } else {
