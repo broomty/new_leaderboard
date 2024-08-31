@@ -159,7 +159,7 @@ const closeModal = () => {
         v-else
         @click="goToPage(page)"
         :class="{
-          'bg-green-500 text-white': currentPage === page,
+          'bg-[#265E3C] text-white': currentPage === page,
           'text-gray-600 bg-white hover:bg-green-100': currentPage !== page,
         }"
         class="flex items-center justify-center w-8 h-8 text-sm font-medium rounded-md"
