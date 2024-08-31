@@ -32,7 +32,7 @@ const logout = () => {
 </script>
 
 <template>
-  <div class="w-full bg-green-500">
+  <div class="w-full bg-[#265E3C]">
     <div class=" p-3 2xl:p-4 px-8 flex justify-between items-center mx-auto max-w-7xl">
       <!-- Logo or Title -->
       <h1 class="text-white text-lg md:text-2xl  font-bold">Kf-LeaderBoard</h1>

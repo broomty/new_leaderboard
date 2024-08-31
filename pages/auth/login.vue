@@ -112,7 +112,7 @@ const validateEmail = (email) => {
     <div class="flex flex-col items-center justify-center mb-12">
       <img v-if="colorMode.value !== 'dark'" src="/kijani-logo-name.png" class="h-12 mb-6" alt="">
       <img v-else src="/kijaniforestry-white.png" alt="Logo" class="h-12 mb-6" />
-      <h1 class="text-xl text-green-500 mt-2 dark:text-green-400">Performance LeaderBoard</h1>
+      <h1 class="text-xl text-[#265E3C] mt-2 dark:text-green-400">Performance LeaderBoard</h1>
     </div>
     <div class="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md">
       <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800 dark:text-white text-center">Login</h2>
@@ -127,7 +127,7 @@ const validateEmail = (email) => {
             placeholder="Enter your email" required />
         </div>
         <button type="button" @click="login"
-          class="w-full bg-green-500 dark:bg-green-600 text-white py-2 sm:py-3 rounded-lg font-semibold hover:bg-green-600 dark:hover:bg-green-700 transition duration-200">
+          class="w-full bg-[#265E3C] dark:bg-green-600 text-white py-2 sm:py-3 rounded-lg font-semibold hover:bg-green-700 dark:hover:bg-green-700 transition duration-200">
           {{ verifying ? 'verifying..... ':'Login' }} <i class="fa fa-gear animate-spin" v-if="verifying"></i>
         </button>
       </form>
