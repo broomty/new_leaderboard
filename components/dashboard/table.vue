@@ -119,13 +119,13 @@ const closeModal = () => {
             <td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
               <div class="flex items-center gap-3">
                 <p class="text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
-                  {{ parish.total }}
+                  {{ parish.total.toLocaleString() }}
                 </p>
               </div>
             </td>
             <td class="h-[72px] px-4 py-2 text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
               <!-- Button to open modal with parish details -->
-              <button @click="openModal(parish)" class="text-blue-500 hover:underline">
+              <button @click="openModal(parish)" class="text-green-500 hover:underline">
                 view <i class="fa fa-eye"></i>
               </button>
             </td>
