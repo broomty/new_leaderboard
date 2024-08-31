@@ -70,10 +70,10 @@ const closeModal = () => {
 
                         <!-- Centered Species Card -->
                         <hr class="my-2">
-                        <p>Potted: {{ group.potted }}</p>
-                        <p>Pricked: {{ group.pricked }}</p>
-                        <p>Sorted: {{ group.sorted }}</p>
-                        <p>Distributed: {{ group.distributed }}</p>
+                        <p>Potted: {{ group.potted.toLocaleString() }}</p>
+                        <p>Pricked: {{ group.pricked.toLocaleString() }}</p>
+                        <p>Sorted: {{ group.sorted.toLocaleString() }}</p>
+                        <p>Distributed: {{ group.distributed.toLocaleString() }}</p>
                     </div>
                 </div>
             </div>
