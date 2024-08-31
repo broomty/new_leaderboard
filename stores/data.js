@@ -17,6 +17,11 @@ export const useCounterStore = defineStore(
     const addUserData = (data) => {
       userData.value = data;
     };
+    
+    //function to switch activity
+    const switchActivity = (newActivity) => {
+      activity.value = newActivity;
+    }
 
     // Function to fetch data from API
     const fetchData = async () => {
@@ -137,6 +142,7 @@ export const useCounterStore = defineStore(
       fetchData,
       loadingData,
       addUserData,
+      switchActivity,
     };
   },
   {

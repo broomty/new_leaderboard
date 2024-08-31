@@ -1,5 +1,16 @@
 <script setup>
-const activity = ref('potted');
+const store = useCounterStore();
+const activity = ref(store.activity);
+
+// Function to run when activity changes
+const onActivityChange = async (newValue, oldValue) => {
+  store.switchActivity(newValue);
+};
+
+// Watch for changes in the `activity` ref
+watch(activity, (newValue, oldValue) => {
+  onActivityChange(newValue, oldValue);
+});
 </script>
 
 <template>
@@ -27,10 +38,10 @@ const activity = ref('potted');
                 Activity:</label>
             <select id="activity" v-model="activity"
                 class="form-select mt-1 block w-full pl-3 pr-10 py-2 text-base dark:bg-[#334155] bg-[#e7f3ec] dark:text-[#cbd5e1] text-[#0e1b13] border-none focus:outline-none sm:text-sm rounded-xl">
-                <option value="potted">Potting</option>
-                <option value="pricked">Pricking</option>
-                <option value="sorted">Sorting</option>
-                <option value="distributed">Distribution</option>
+                <option value="Potted" >Potting</option>
+                <option value="Pricked">Pricking</option>
+                <option value="Sorted">Sorting</option>
+                <option value="Distributed">Distribution</option>
             </select>
         </div>
         <div class="px-4 py-3">
