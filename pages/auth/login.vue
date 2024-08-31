@@ -23,7 +23,7 @@ const errMsg = ref('');
 const email = ref('');
 
 const login = async () => {
-  
+
   // Validate email
   const validEmail = validateEmail(email.value);
   if (email.value === '' || !validEmail) {
@@ -52,7 +52,7 @@ const login = async () => {
 
       // Wait for the cookie to be set and then fetch data
       await store.fetchData();
-      await store.addUserData(data.user.userData)
+      store.addUserData(data.user.userData)
 
       // Navigate to dashboard
       navigateTo('/');
@@ -116,9 +116,9 @@ const validateEmail = (email) => {
     </div>
     <div class="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md">
       <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800 dark:text-white text-center">Login</h2>
-      <div v-if="errMsg != ''" class="border border-red-500 p-2 m-2 w-96 rounded-lg bg-red-100 dark:bg-gray-800">
-      <p class="text-red-500">{{ errMsg }}</p>
-    </div>
+      <div v-if="errMsg != ''" class="border border-red-500 p-2 m- w-full md:w-96 rounded-lg bg-red-100 dark:bg-gray-800">
+        <p class="text-red-500">{{ errMsg }}</p>
+      </div>
       <form action="#" method="POST" @submit.prevent>
         <div class="mb-4">
           <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label>
@@ -128,7 +128,7 @@ const validateEmail = (email) => {
         </div>
         <button type="button" @click="login"
           class="w-full bg-[#265E3C] dark:bg-green-600 text-white py-2 sm:py-3 rounded-lg font-semibold hover:bg-green-700 dark:hover:bg-green-700 transition duration-200">
-          {{ verifying ? 'verifying..... ':'Login' }} <i class="fa fa-gear animate-spin" v-if="verifying"></i>
+          {{ verifying ? 'verifying..... ' : 'Login' }} <i class="fa fa-gear animate-spin" v-if="verifying"></i>
         </button>
       </form>
     </div>
