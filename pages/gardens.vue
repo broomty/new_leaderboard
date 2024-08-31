@@ -25,7 +25,7 @@ const handleConfirm = () => {
 <template>
     <LoadingScreen v-if="isLoading" />
     <div class="flex flex-col items-center justify-center h-[65%]">
-        <div class="bg-white text-gray-800 flex items-center justify-center p-12 shadow-lg">
+        <div class="bg-white text-gray-800 flex items-center justify-center p-12 shadow-lg rounded-xl">
             <div class="text-center space-y-8">
                 <!-- Company Logo -->
                 <div>
@@ -34,7 +34,7 @@ const handleConfirm = () => {
                 </div>
 
                 <!-- Main Heading -->
-                <h1 class="text-5xl font-bold">Coming Soon</h1>
+                <h1 class="text-5xl font-bold animate-pulse">Coming Soon</h1>
 
                 <!-- Subtext -->
                 <p class="text-lg">The IT team is working hard to bring you something amazing. Stay tuned!</p>
