@@ -33,12 +33,12 @@ const logout = () => {
 
 <template>
   <div class="w-full bg-green-500">
-    <div class=" p-2 2xl:p-4 px-8 flex justify-between items-center mx-auto max-w-7xl">
+    <div class=" p-3 2xl:p-4 px-8 flex justify-between items-center mx-auto max-w-7xl">
       <!-- Logo or Title -->
-      <h1 class="text-white text-lg md:text-xl 2xl:text-2xl font-bold">Kf-LeaderBoard</h1>
+      <h1 class="text-white text-lg md:text-2xl  font-bold">Kf-LeaderBoard</h1>
 
       <!-- kijani logo (hidden on small screens) -->
-      <img src="/kijaniforestry-white.png" class="h-6 2xl:h-12 hidden md:block" alt="">
+      <img src="/kijaniforestry-white.png" class="h-8 2xl:h-12 hidden md:block" alt="">
 
       <!-- Hamburger Menu (visible on small screens) -->
       <button @click="toggleMenu" class="text-white md:hidden">
