@@ -2,7 +2,8 @@ import { defineStore } from "pinia";
 import { ref, watch } from "vue"; // Import watch from vue
 import { useCookie } from "#app";
 
-const serverUrl = process.env.API_SERVER_URL || 'http://localhost:5000';
+const serverUrl = "https://leaderboard-auth.vercel.app";
+//const serverUrl = process.env.API_SERVER_URL || 'http://localhost:5000';
 export const useCounterStore = defineStore("counter", () => {
   const rankedParishes = ref([]);
   const activity = ref("Potted");
