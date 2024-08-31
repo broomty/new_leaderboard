@@ -10,7 +10,8 @@ useSeoMeta({
   ogDescription: 'Login with your email to view parish Performance',
 })
 
-const serverUrl = 'https://leaderboard-auth.vercel.app';
+//const serverUrl = 'https://leaderboard-auth.vercel.app';
+const serverUrl =  process.env.API_SERVER_URL ||'http://localhost:5000';
 
 const verifying = ref(false);
 

@@ -18,10 +18,11 @@ const closeModal = () => {
     emit('close');
 };
 </script>
+
 <template>
     <div class="fixed inset-0 z-50 flex items-center justify-center" :class="isOpen ? 'block' : 'hidden'">
         <!-- Overlay -->
-        <div class="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-80 transition-opacity" @click="closeModal">
+        <div class="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-80 transition-opacity">
         </div>
 
         <!-- Modal Content -->
@@ -30,9 +31,10 @@ const closeModal = () => {
             <!-- Modal Header -->
             <div class="flex justify-between items-center border-b pb-3 dark:border-gray-700">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Parish: {{ parish.parish }}</h3>
-                <h3>Ranked:{{ parish.rank }} / {{ store.rankedParishes.length }} in {{ store.activity ==
-                    'Potted' ? 'Potting' : store.activity == 'Pricked' ? 'pricking' : store.activity ==
-                    'Sorted'?'sorting':'Distribution'}}</h3>
+                <h3 class="dark:text-gray-300">Ranked:{{ parish.rank }} / {{ store.rankedParishes.length }} in {{
+                    store.activity ==
+                        'Potted' ? 'Potting' : store.activity == 'Pricked' ? 'pricking' : store.activity ==
+                            'Sorted' ? 'sorting' :'Distribution'}}</h3>
                 <button @click="closeModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
                     &times;
                 </button>
@@ -46,11 +48,28 @@ const closeModal = () => {
                     parish.branch.split('|')[0] : 'No Branch' }}</span></p>
 
                 <!-- Scrollable container for groups -->
-                <div class="grid grid-cols-3 overflow-auto h-64">
+                <div class="grid grid-cols-3 overflow-auto h-64 2xl:h-96">
                     <div v-for="(group, groupKey) in parish.groups" :key="groupKey"
-                        class="p-4 border border-green-400 rounded-lg m-2">
-                        <p class="font-bold">{{ groupKey }}</p>
-                        <hr>
+                        class="relative p-4 border border-green-400 rounded-lg m-2 text-sm">
+                        <div class="flex justify-between">
+                            <p class="font-bold text-sm">{{ groupKey }}</p>
+                            <div class="group ">
+                            <i class="fa fa-ellipsis-v"></i>
+                            <div class="hidden absolute inset-0 flex items-center justify-center group-hover:block">
+                                <div class="bg-green-400 p-4 text-sm rounded-lg text-white">
+                                    <h2 class="font-bold">SPECIES:</h2>
+                                    <p v-for="specie in group.species.split(',')" :key="specie">
+                                        {{ specie }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        
+                        <p class="text-sm">Number of visits: {{ group.visits }}</p>
+
+                        <!-- Centered Species Card -->
+                        <hr class="my-2">
                         <p>Potted: {{ group.potted }}</p>
                         <p>Pricked: {{ group.pricked }}</p>
                         <p>Sorted: {{ group.sorted }}</p>
@@ -58,8 +77,6 @@ const closeModal = () => {
                     </div>
                 </div>
             </div>
-
-
 
             <!-- Modal Footer -->
             <div class="mt-6 flex justify-end">
