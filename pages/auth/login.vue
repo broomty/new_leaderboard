@@ -50,6 +50,7 @@ const login = async () => {
 
       // Wait for the cookie to be set and then fetch data
       await store.fetchData();
+      await store.addUserData(data.user.userData)
 
       // Navigate to dashboard
       navigateTo('/');
