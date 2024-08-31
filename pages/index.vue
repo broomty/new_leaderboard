@@ -3,15 +3,15 @@ const store = useCounterStore();
 
 definePageMeta({
     middleware: 'auth'
-})
+});
 useSeoMeta({
     title: 'Home - Kijani leaderboard',
     description: 'Use filters to view ranking based on activities',
     ogTitle: 'Home - Kijani leaderboard',
     ogDescription: 'Use filters to view ranking based on activities',
-})
+});
 
-const isLoading = ref(true);
+const isLoading = computed(() => store.loadingData); // Make isLoading a computed property
 const showModal = ref(false);
 
 const handleConfirm = () => {
@@ -19,12 +19,6 @@ const handleConfirm = () => {
     console.log('Modal confirmed');
     showModal.value = false;
 };
-
-onMounted(() => {
-    setTimeout(() => {
-        isLoading.value = false;
-    }, 4000);
-});
 </script>
 
 <template>
@@ -45,5 +39,4 @@ onMounted(() => {
             </div>
         </div>
     </div>
-
 </template>

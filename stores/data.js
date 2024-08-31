@@ -7,9 +7,11 @@ const serverUrl = "https://leaderboard-auth.vercel.app";
 export const useCounterStore = defineStore("counter", () => {
   const rankedParishes = ref([]);
   const activity = ref("Potted");
+  const loadingData = ref(false);
 
   // Fetch data from API
   const fetchData = async () => {
+    loadingData.value = true;
     const userToken = useCookie("token").value;
 
     const response = await fetch(`${serverUrl}/api/parishes`, {
@@ -73,6 +75,7 @@ export const useCounterStore = defineStore("counter", () => {
         // Rank parishes
         rankParishes(assignedGroups);
       }
+      loadingData.value = false;
     }
   };
 
@@ -99,5 +102,5 @@ export const useCounterStore = defineStore("counter", () => {
     fetchData();
   });
 
-  return { rankedParishes, activity, fetchData };
+  return { rankedParishes, activity, fetchData, loadingData };
 });
