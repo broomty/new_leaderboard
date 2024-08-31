@@ -1,4 +1,5 @@
 <script setup>
+const store = useCounterStore();
 const colors = useModeStore()
 const colorMode = useColorMode();
 colorMode.preference = 'system';
@@ -19,10 +20,11 @@ const errMsg = ref('');
 const email = ref('');
 
 const login = async () => {
-  console.log(colors.colorMode)
-  //validate email
+  console.log(colors.colorMode);
+  
+  // Validate email
   const validEmail = validateEmail(email.value);
-  if (email.value == '' || !validEmail) {
+  if (email.value === '' || !validEmail) {
     errMsg.value = 'Please enter a valid email address';
     return;
   }
@@ -32,27 +34,34 @@ const login = async () => {
     const response = await fetch(`${serverUrl}/api/login`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: email.value
-      })
+        email: email.value,
+      }),
     });
 
     if (response.ok) {
       const data = await response.json();
-      const tokenCookie = useCookie('token')
+      const tokenCookie = useCookie('token');
       tokenCookie.value = data.token;
-      //navigate to dashboard
-      navigateTo('/')
+
+      // Wait for the cookie to be set and then fetch data
+      await store.fetchData();
+
+      // Navigate to dashboard
+      navigateTo('/');
     } else {
       errMsg.value = 'Invalid Credentials';
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    errMsg.value = 'An error occurred during login';
+  } finally {
+    verifying.value = false;
   }
-  verifying.value = false;
-}
+};
+
 
 //function to validate email with regex
 const validateEmail = (email) => {
