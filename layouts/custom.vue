@@ -54,7 +54,7 @@ const logout = () => {
 
             <!-- Dropdown content -->
             <div
-              class="absolute hidden group-hover:block right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-md shadow-lg py-2 z-20 text-sm 2xl:text-md dark:border">
+              class="absolute hidden group-hover:block right-0 mt-0 w-64 bg-white dark:bg-gray-800 rounded-md shadow-lg py-2 z-20 text-sm 2xl:text-md dark:border">
               <!-- User details section -->
               <div class="px-4 py-2 text-gray-700 dark:text-gray-300">
                 <p class="font-semibold text-lg 2xl:text-xl">{{ userData.firstName }} {{ userData.lastName }}</p>
