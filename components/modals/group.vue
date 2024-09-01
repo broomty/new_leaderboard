@@ -48,7 +48,7 @@ const closeModal = () => {
                     parish.branch : 'No Branch' }}</span></p>
 
                 <!-- Scrollable container for groups -->
-                <div class="grid grid-cols-3 overflow-auto h-64 2xl:h-96">
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 overflow-auto h-64 2xl:h-96">
                     <div v-for="(group, groupKey) in parish.groups" :key="groupKey"
                         class="relative p-4 border border-green-400 rounded-lg m-2 text-sm">
                         <div class="flex justify-between">

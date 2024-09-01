@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref, watch } from "vue";
-import { useCookie } from "#app";
+import { useCookie,useRouter } from "#app";
 
 const serverUrl = "https://leaderboard-auth.vercel.app";
 // const serverUrl = process.env.API_SERVER_URL || 'http://localhost:5000';
@@ -25,6 +25,7 @@ export const useCounterStore = defineStore(
 
     // Function to fetch data from API
     const fetchData = async () => {
+      const router = useRouter();
       const tokenCookie = useCookie("token");
       const userToken = tokenCookie.value;
       loadingData.value = true;
@@ -102,9 +103,11 @@ export const useCounterStore = defineStore(
             console.error("Failed to fetch groups:", groupsResponse.statusText);
           }
         } else {
+          router.push({ path: "/auth/login" });
           console.error("Failed to fetch parishes:", response.statusText);
         }
       } catch (error) {
+        router.push({ path: "/auth/login" });
         console.error("An error occurred during data fetching:", error);
       } finally {
         loadingData.value = false;
