@@ -80,7 +80,7 @@ const closeModal = () => {
 
 <template>
   <div class="px-4 py-3 @container">
-    <div class="overflow-hidden rounded-xl border border-[#d0e7d9] dark:border-[#475569] bg-[#f8fcfa] dark:bg-[#1e293b]">
+    <div class="overflow-x-scroll rounded-xl border border-[#d0e7d9] dark:border-[#475569] bg-[#f8fcfa] dark:bg-[#1e293b]">
       <table class="w-full table-auto">
         <thead>
           <tr class="bg-[#f8fcfa] dark:bg-[#1e293b]">
@@ -125,7 +125,7 @@ const closeModal = () => {
             </td>
             <td class="h-[72px] px-4 py-2 text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
               <!-- Button to open modal with parish details -->
-              <button @click="openModal(parish)" class="text-green-500 hover:underline">
+              <button @click="openModal(parish)" class="text-[#265E3C] hover:underline">
                 view <i class="fa fa-eye"></i>
               </button>
             </td>

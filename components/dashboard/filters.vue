@@ -14,8 +14,8 @@ watch(activity, (newValue, oldValue) => {
 </script>
 
 <template>
-    <div class="px-4 py-3">
-        <label class="flex flex-col min-w-40 h-12 w-full">
+    <div class="px-4 py-3 w-[70%] md:w-full">
+        <label class="flex flex-col min-w-40 h-12 ">
             <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
                 <div class="text-[#4e976d] dark:text-[#4ade80] flex border-none bg-[#e7f3ec] dark:bg-[#334155] items-center justify-center pl-4 rounded-l-xl border-r-0"
                     data-icon="MagnifyingGlass" data-size="24px" data-weight="regular">
