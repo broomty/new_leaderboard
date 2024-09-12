@@ -94,7 +94,16 @@ const closeModal = () => {
               Parish
             </th>
             <th class="px-4 py-3 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
-              {{ store.activity }}
+              Potted
+            </th>
+            <th class="px-4 py-3 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
+              Pricked
+            </th>
+            <th class="px-4 py-3 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
+              Sorted
+            </th>
+            <th class="px-4 py-3 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
+              Distributed
             </th>
             <th class="px-4 py-3 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
               Actions
@@ -119,7 +128,29 @@ const closeModal = () => {
             <td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
               <div class="flex items-center gap-3">
                 <p class="text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
-                  {{ parish.total.toLocaleString() }}
+                  <!-- get the total of potted from each group potted data -->
+                  {{ Object.values(parish.groups).reduce((acc, group) => acc + group.potted, 0).toLocaleString() }}
+                </p>
+              </div>
+            </td>
+            <td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
+              <div class="flex items-center gap-3">
+                <p class="text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
+                  {{ Object.values(parish.groups).reduce((acc, group) => acc + group.pricked, 0).toLocaleString() }}
+                </p>
+              </div>
+            </td>
+            <td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
+              <div class="flex items-center gap-3">
+                <p class="text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
+                  {{ Object.values(parish.groups).reduce((acc, group) => acc + group.sorted, 0).toLocaleString() }}
+                </p>
+              </div>
+            </td>
+            <td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
+              <div class="flex items-center gap-3">
+                <p class="text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
+                  {{ Object.values(parish.groups).reduce((acc, group) => acc + group.distributed, 0).toLocaleString() }}
                 </p>
               </div>
             </td>
