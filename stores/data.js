@@ -62,8 +62,10 @@ export const useCounterStore = defineStore(
               const parishName = parish.fields["Parish Name"];
               const pc = parish.fields["PC-Name"];
               const branch = parish.fields["Branch"];
+              const pEmail = parish.fields["PC-Email"];
               assignedGroups[parishName] = {
                 coordinator: pc,
+                pemail: pEmail,
                 branch: branch,
                 groups: {},
                 total: 0,
@@ -120,6 +122,7 @@ export const useCounterStore = defineStore(
         .map((parishName) => ({
           parish: parishName,
           coordinator: assignedGroups[parishName].coordinator,
+          pcEmail : assignedGroups[parishName].pemail,
           branch: assignedGroups[parishName].branch,
           total: assignedGroups[parishName].total,
           groups: assignedGroups[parishName].groups,
