@@ -18,6 +18,12 @@ export const useCounterStore = defineStore(
     const addUserData = (data) => {
       userData.value = data;
     };
+
+    //function to update viewMe
+    const updateViewMe = () => {
+      viewMe.value = !viewMe.value; 
+    };
+    
     
     //function to switch activity
     const switchActivity = (newActivity) => {
@@ -150,6 +156,7 @@ export const useCounterStore = defineStore(
       loadingData,
       addUserData,
       switchActivity,
+      updateViewMe,
     };
   },
   {

@@ -21,9 +21,9 @@ const logout = () => {
 <template>
   <div class="flex flex-col dark:bg-gray-900 min-h-screen">
     <div class="w-full bg-[#265E3C]">
-      <div class="p-3 2xl:p-4 px-8 flex flex-row-reverse md:flex-row justify-between items-center mx-auto max-w-7xl">
+      <div class="p-3 2xl:p-4 md:px-8 flex flex-row-reverse md:flex-row justify-between items-center mx-auto max-w-7xl">
         <!-- Kijani logo (hidden on small screens) -->
-        <img src="/kijaniforestry-white.png" class="h-8 2xl:h-12 md:block" alt="">
+        <img src="/kijaniforestry-white.png" class="h-8 2xl:h-12 " alt="">
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center gap-4 text-white">
@@ -52,14 +52,12 @@ const logout = () => {
             <!-- Dropdown content -->
             <div
               class="absolute hidden group-hover:block right-0 mt-0 w-64 bg-white dark:bg-gray-800 rounded-md shadow-lg py-2 z-20 text-sm 2xl:text-md dark:border">
-              <!-- User details section -->
               <div class="px-4 py-2 text-gray-700 dark:text-gray-300">
                 <p class="font-semibold text-lg 2xl:text-xl">{{ userData.firstName }} {{ userData.lastName }}</p>
                 <p class="text-gray-700 dark:text-gray-400">{{ userData.email }}</p>
                 <p class="text-green-500 text-lg dark:text-green-400">{{ userData.role }}</p>
               </div>
               <hr>
-              <!-- Logout button -->
               <button @click="logout"
                 class="block px-4 py-2 text-red-700 w-full dark:text-red-300 hover:bg-gray-100 dark:hover:bg-gray-700">
                 <i class="fa fa-sign-out"></i> Logout
@@ -70,15 +68,14 @@ const logout = () => {
       </div>
 
       <!-- Mobile Menu (visible on small screens when open) -->
-      <div v-if="isMenuOpen" class="md:hidden px-8 py-4 space-y-4 bg-white">
-        <!-- User Info and Menu Links -->
-        <div class="text-center shadow-lg w-full">
+      <div v-if="isMenuOpen" class="md:hidden px-8 py-4 space-y-4 bg-white dark:bg-gray-800">
+        <div class="text-center w-full">
           <div class="flex flex-col items-center space-x-2">
             <i class="w-8 h-8 rounded-full fa fa-user bg-gray-800 p-2 text-center"></i>
             <span>{{ userData.firstName }} {{ userData.lastName }}</span>
           </div>
           <div class="mt-4 space-y-2">
-            <p class="block text-gray-900 hover:bg-green-500 px-4 py-2 rounded">{{ userData.email }}</p>
+            <p class="block text-gray-900 dark:text-gray-100 hover:bg-green-500 px-4 py-2 rounded">{{ userData.email }}</p>
             <p class="text-green-500 text-lg dark:text-green-400">{{ userData.role }}</p>
             <button @click="logout"
               class="block px-4 py-2 text-red-700 w-full dark:text-red-300 hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -89,12 +86,11 @@ const logout = () => {
       </div>
     </div>
 
-    <div
-      class="relative flex size-full min-h-screen flex-col bg-[#f8fcfa] dark:bg-[#1e293b] group/design-root overflow-x-hidden"
-      style='font-family: "Work Sans", "Noto Sans", sans-serif;'>
+    <!-- Main Content -->
+    <div class="relative flex size-full min-h-screen flex-col bg-[#f8fcfa] dark:bg-[#1e293b] overflow-x-hidden">
       <div class="layout-container flex h-full grow flex-col">
-        <div class="px-4 sm:px-20 lg:px-40 flex flex-1 justify-center py-5">
-          <div class="flex flex-col max-w-[960px] flex-1">
+        <div class="px-2 flex  justify-center py-5">
+          <div class="flex flex-col md:max-w-4xl w-full">
             <slot />
           </div>
         </div>
@@ -109,3 +105,4 @@ const logout = () => {
   color: orange;
 }
 </style>
+

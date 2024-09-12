@@ -115,44 +115,33 @@ const closeModal = () => {
 
 
 <template>
-  <span class="text-red-500">{{ store.viewMe }}</span>
-  <div class="px-4 py-3 @container">
-
-    <div
-      class="overflow-x-scroll rounded-xl border border-[#d0e7d9] dark:border-[#475569] bg-[#f8fcfa] dark:bg-[#1e293b]">
-      <table class="w-full table-auto">
+  <div class="px-4 py-3">
+    <div class="overflow-x-auto rounded-xl border border-[#d0e7d9] dark:border-[#475569] bg-[#f8fcfa] dark:bg-[#1e293b]">
+      <table class="min-w-full table-auto">
         <thead>
           <tr class="bg-[#f8fcfa] dark:bg-[#1e293b]">
-            <th
-              class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
+            <th class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-xs md:text-sm font-medium leading-normal uppercase">
               Rank
             </th>
-            <th
-              class="pl-2 pr-6 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
+            <th class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-xs md:text-sm font-medium leading-normal uppercase">
               Coordinator
             </th>
-            <th
-              class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
+            <th class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-xs md:text-sm font-medium leading-normal uppercase">
               Parish
             </th>
-            <th
-              class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
+            <th class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-xs md:text-sm font-medium leading-normal uppercase">
               Potted
             </th>
-            <th
-              class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
+            <th class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-xs md:text-sm font-medium leading-normal uppercase">
               Pricked
             </th>
-            <th
-              class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
+            <th class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-xs md:text-sm font-medium leading-normal uppercase">
               Sorted
             </th>
-            <th
-              class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
+            <th class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-xs md:text-sm font-medium leading-normal uppercase">
               Distributed
             </th>
-            <th
-              class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-medium leading-normal uppercase">
+            <th class="px-4 py-2 text-left text-[#0e1b13] dark:text-[#cbd5e1] text-xs md:text-sm font-medium leading-normal uppercase">
               Actions
             </th>
           </tr>
@@ -161,45 +150,44 @@ const closeModal = () => {
           <tr v-for="parish in paginatedItems" :key="parish.parish"
             class="border-t border-t-[#d0e7d9] dark:border-t-[#475569]"
             :class="{ 'bg-green-100': parish.pcEmail === store.userData.email }">
-            <td class="px-2 py-2 text-[#4e976d] dark:text-white text-sm font-normal leading-normal">
+            <td class="px-2 py-2 text-xs md:text-sm text-[#4e976d] dark:text-white">
               {{ parish.rank }}
             </td>
-            <td class="pl-2 py-2 text-sm text-[#4e976d] dark:text-[#4ade80] text-sm font-normal leading-normal">
+            <td class="pl-2 py-2 text-xs md:text-sm text-[#4e976d] dark:text-[#4ade80]">
               {{ parish.coordinator }}
             </td>
-            <td class="px-4 py-2 text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
+            <td class="px-4 py-2 text-xs md:text-sm text-[#0e1b13] dark:text-[#cbd5e1]">
               {{ parish.parish }}
             </td>
-            <td class="px-4 py-2 text-sm font-normal leading-normal">
+            <td class="px-4 py-2 text-xs md:text-sm">
               <div class="flex items-center gap-3">
-                <p class="text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
+                <p class="text-[#0e1b13] dark:text-[#cbd5e1]">
                   {{ Object.values(parish.groups).reduce((acc, group) => acc + group.potted, 0).toLocaleString() }}
                 </p>
               </div>
             </td>
-            <td class="px-4 py-2 text-sm font-normal leading-normal">
+            <td class="px-4 py-2 text-xs md:text-sm">
               <div class="flex items-center gap-3">
-                <p class="text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
+                <p class="text-[#0e1b13] dark:text-[#cbd5e1]">
                   {{ Object.values(parish.groups).reduce((acc, group) => acc + group.pricked, 0).toLocaleString() }}
                 </p>
               </div>
             </td>
-            <td class="px-4 py-2 text-sm font-normal leading-normal">
+            <td class="px-4 py-2 text-xs md:text-sm">
               <div class="flex items-center gap-3">
-                <p class="text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
+                <p class="text-[#0e1b13] dark:text-[#cbd5e1]">
                   {{ Object.values(parish.groups).reduce((acc, group) => acc + group.sorted, 0).toLocaleString() }}
                 </p>
               </div>
             </td>
-            <td class="px-4 py-2 text-sm font-normal leading-normal">
+            <td class="px-4 py-2 text-xs md:text-sm">
               <div class="flex items-center gap-3">
-                <p class="text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
+                <p class="text-[#0e1b13] dark:text-[#cbd5e1]">
                   {{ Object.values(parish.groups).reduce((acc, group) => acc + group.distributed, 0).toLocaleString() }}
                 </p>
               </div>
             </td>
-            <td class="px-4 py-4 text-[#0e1b13] dark:text-[#cbd5e1] text-sm font-normal leading-normal">
-              <!-- Button to open modal with parish details -->
+            <td class="px-4 py-4 text-xs md:text-sm">
               <button @click="openModal(parish)" class="text-[#265E3C] hover:underline">
                 view <i class="fa fa-eye"></i>
               </button>
@@ -215,8 +203,7 @@ const closeModal = () => {
       <button @click="previousPage" :disabled="currentPage === 1"
         class="flex items-center justify-center w-8 h-8 rounded-md bg-gray-200 text-gray-600 hover:bg-gray-300 disabled:opacity-50">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
-          <path
-            d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
+          <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
           </path>
         </svg>
       </button>
@@ -238,8 +225,7 @@ const closeModal = () => {
       <button @click="nextPage" :disabled="currentPage === totalPages.value"
         class="flex items-center justify-center w-8 h-8 rounded-md bg-gray-200 text-gray-600 hover:bg-gray-300 disabled:opacity-50">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
-          <path
-            d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z">
+          <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z">
           </path>
         </svg>
       </button>
@@ -249,3 +235,4 @@ const closeModal = () => {
     <ModalsGroup :isOpen="isModalOpen" @close="closeModal" :parish="selectedParish ? selectedParish : {}" />
   </div>
 </template>
+
