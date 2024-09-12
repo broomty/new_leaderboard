@@ -10,6 +10,7 @@ export const useCounterStore = defineStore(
   () => {
     const userData = ref({});
     const rankedParishes = ref([]);
+    const viewMe = ref(false);
     const activity = ref("Potted");
     const loadingData = ref(false);
 
@@ -17,6 +18,12 @@ export const useCounterStore = defineStore(
     const addUserData = (data) => {
       userData.value = data;
     };
+
+    //function to update viewMe
+    const updateViewMe = () => {
+      viewMe.value = !viewMe.value; 
+    };
+    
     
     //function to switch activity
     const switchActivity = (newActivity) => {
@@ -143,11 +150,13 @@ export const useCounterStore = defineStore(
     return {
       rankedParishes,
       activity,
+      viewMe,
       userData,
       fetchData,
       loadingData,
       addUserData,
       switchActivity,
+      updateViewMe,
     };
   },
   {

@@ -25,7 +25,8 @@ const handleConfirm = () => {
 
 <template>
     <LoadingScreen v-if="isLoading" />
-    <DashboardFilters />
-    <DashboardTable />
-
+    <div class="px-4 py-5 ">
+        <DashboardFilters />
+        <DashboardTable />
+    </div>
 </template>
