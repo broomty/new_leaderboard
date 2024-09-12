@@ -1,4 +1,5 @@
 <script setup>
+const store = useCounterStore();
 const userData = useCounterStore().userData;
 const colorMode = useColorMode();
 colorMode.preference = 'system';
@@ -14,6 +15,7 @@ function toggleMenu() {
 // function to logout
 const logout = () => {
   tokenCookie.value = null;
+  store.resetData();
   navigateTo('/auth/login');
 };
 </script>
