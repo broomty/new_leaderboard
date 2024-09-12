@@ -115,6 +115,7 @@ const closeModal = () => {
             v-for="parish in paginatedItems"
             :key="parish.parish"
             class="border-t border-t-[#d0e7d9] dark:border-t-[#475569]"
+            :class="{ 'bg-green-100':parish.pcEmail === store.userData.email }"
           >
             <td class="h-[72px] px-2 py-2 text-[#4e976d] dark:text-white text-sm font-normal leading-normal">
               {{ parish.rank }}
