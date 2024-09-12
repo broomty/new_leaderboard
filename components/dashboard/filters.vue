@@ -55,8 +55,5 @@ watch(activity, (newValue, oldValue) => {
         </div>
         <ModalsGroup />
     </div>
-    <div v-for="user in store.rankedParishes">
-        <h1 v-if="store.userData.email === user.pcEmail" class="text-red-500 px-4">You are ranked {{ user.rank }} with a total of {{ user.total.toLocaleString() }}</h1>
-    </div>
 
 </template>
