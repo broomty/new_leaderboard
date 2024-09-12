@@ -24,6 +24,14 @@ export const useCounterStore = defineStore(
       viewMe.value = !viewMe.value; 
     };
     
+    ///function to reset data
+    const resetData = () => {
+      userData.value = {};
+      rankedParishes.value = [];
+      viewMe.value = false;
+      activity.value = "Potted";
+      loadingData.value = false;
+    }
     
     //function to switch activity
     const switchActivity = (newActivity) => {
@@ -157,6 +165,7 @@ export const useCounterStore = defineStore(
       addUserData,
       switchActivity,
       updateViewMe,
+      resetData,
     };
   },
   {

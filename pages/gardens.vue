@@ -2,6 +2,7 @@
 const store = useCounterStore();
 
 definePageMeta({
+    middleware: 'auth',
     layout: 'custom',
     colorMode: 'light',
 });
