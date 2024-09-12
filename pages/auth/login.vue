@@ -4,8 +4,9 @@ const colorMode = useColorMode();
 colorMode.preference = 'light';
 
 definePageMeta({
-  colorMode: 'light',
-})
+    middleware: 'auth',
+    colorMode: 'light',
+});
 
 useSeoMeta({
   title: 'Login - Kijani leaderboard',
