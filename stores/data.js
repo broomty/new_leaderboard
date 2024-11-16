@@ -87,7 +87,7 @@ export const useCounterStore = defineStore(
               };
 
               groupsData.forEach((group) => {
-                if (group.fields["Parish"] === parishID) {
+                if (group.fields["Parish ID"] === parishID) {
                   const groupName = group.fields["Group Name"];
                   const pottedCount = group.fields["Total Potted"];
                   const prickedCount = group.fields["Total Pricked"];
