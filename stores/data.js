@@ -47,7 +47,7 @@ export const useCounterStore = defineStore(
 
       try {
         // Fetch parishes
-        const response = await fetch(`${serverUrl}/api/parishes`, {
+        const response = await fetch(`/api/parishes`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export const useCounterStore = defineStore(
           const parishes = await response.json();
 
           // Fetch groups
-          const groupsResponse = await fetch(`${serverUrl}/api/groups`, {
+          const groupsResponse = await fetch('/api/groups', {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
