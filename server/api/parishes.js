@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
-  const jwtSecret = config.jwtSecret; // Secret key from runtime config
+  const jwtSecret = config.jwtSecret; 
   const tableName = config.parishTable;
   const viewName = config.parishView;
   const encodedTableName = encodeURIComponent(tableName);
