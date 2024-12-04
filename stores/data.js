@@ -41,33 +41,41 @@ export const useCounterStore = defineStore(
       const tokenCookie = useCookie("token");
       const userToken = tokenCookie.value;
       loadingData.value = true;
-
+    
+      if (!userToken) {
+        console.error("Missing user token. Redirecting to login.");
+        router.push({ path: "/auth/login" });
+        loadingData.value = false;
+        return;
+      }
+    
       try {
-        const response = await fetch("/api/parishes", {
+        const response = await fetch(`/api/parishes/${activity.value}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${userToken}`,
           },
         });
-
-        console.log(response);
-
+    
         if (response.ok) {
-          const data = await response.json(); 
-          console.log(data)
-          rankedParishes.value = data; 
+          const data = await response.json();
+          rankedParishes.value = data;
         } else {
-          router.push({ path: "/auth/login" });
-          console.error("Failed to fetch parishes:", response.statusText);
+          if (response.status === 401) {
+            router.push({ path: "/auth/login" });
+          } else {
+            console.error("Failed to fetch parishes:", response.statusText);
+          }
         }
       } catch (error) {
-        router.push({ path: "/auth/login" });
         console.error("An error occurred during data fetching:", error);
+        router.push({ path: "/auth/login" });
       } finally {
         loadingData.value = false;
       }
     };
+    
 
     // Watch for changes in activity and fetch data when it changes
     watch(activity, () => {

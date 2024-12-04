@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import AirtableService from '../utils/airtable';
+import AirtableService from '../../utils/airtable';
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -13,6 +13,7 @@ export default defineEventHandler(async (event) => {
   const airtableGroupService = new AirtableService(config.ugCnuBaseId, groupTable);
 
   const authHeader = getHeader(event, 'authorization'); // Get the JWT token from the request
+
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     throw createError({
@@ -33,8 +34,10 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const query = getQuery(event);
-    const activity = query.activity || "Potted";
+
+    const activity = getRouterParam(event,'activity') || "Potted";
+
+    console.log(getRouterParam(event,'activity'));
     // Fetch parishes
     const parishes = await airtableParishService.fetchAllRecords(parishView);
 
@@ -74,7 +77,6 @@ export default defineEventHandler(async (event) => {
 
     // Rank parishes
     const rankedParishes = rankParishes(assignedGroups);
-    console.log(rankedParishes[0])
 
     // return { activity, rankedParishes };
     return rankedParishes;
