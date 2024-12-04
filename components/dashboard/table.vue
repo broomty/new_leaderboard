@@ -162,28 +162,28 @@ const closeModal = () => {
             <td class="px-4 py-2 text-xs md:text-sm">
               <div class="flex items-center gap-3">
                 <p class="text-[#0e1b13] dark:text-[#cbd5e1]">
-                  {{ Object.values(parish.groups).reduce((acc, group) => acc + group.potted, 0).toLocaleString() }}
+                  {{ Object.values(parish.groups).reduce((acc, group) => acc + group['Total Potted'], 0).toLocaleString() }}
                 </p>
               </div>
             </td>
             <td class="px-4 py-2 text-xs md:text-sm">
               <div class="flex items-center gap-3">
                 <p class="text-[#0e1b13] dark:text-[#cbd5e1]">
-                  {{ Object.values(parish.groups).reduce((acc, group) => acc + group.pricked, 0).toLocaleString() }}
+                  {{ Object.values(parish.groups).reduce((acc, group) => acc + group['Total Pricked'], 0).toLocaleString() }}
                 </p>
               </div>
             </td>
             <td class="px-4 py-2 text-xs md:text-sm">
               <div class="flex items-center gap-3">
                 <p class="text-[#0e1b13] dark:text-[#cbd5e1]">
-                  {{ Object.values(parish.groups).reduce((acc, group) => acc + group.sorted, 0).toLocaleString() }}
+                  {{ Object.values(parish.groups).reduce((acc, group) => acc + group['Total Sorted'], 0).toLocaleString() }}
                 </p>
               </div>
             </td>
             <td class="px-4 py-2 text-xs md:text-sm">
               <div class="flex items-center gap-3">
                 <p class="text-[#0e1b13] dark:text-[#cbd5e1]">
-                  {{ Object.values(parish.groups).reduce((acc, group) => acc + group.distributed, 0).toLocaleString() }}
+                  {{ Object.values(parish.groups).reduce((acc, group) => acc + group['Total Distributed'], 0).toLocaleString() }}
                 </p>
               </div>
             </td>

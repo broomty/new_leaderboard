@@ -1,15 +1,19 @@
 import jwt from 'jsonwebtoken';
+import AirtableService from '../utils/airtable';
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
-  const jwtSecret = config.jwtSecret; 
-  const tableName = config.parishTable;
-  const viewName = config.parishView;
-  const encodedTableName = encodeURIComponent(tableName);
-  const encodedView = encodeURIComponent(viewName);
+  const jwtSecret = config.jwtSecret;
+  const parishTable = config.parishTable;
+  const groupTable = config.groupTable;
+  const parishView = config.parishView;
+  const groupView = config.groupView;
 
-  // Verify JWT from Authorization header
-  const authHeader = getHeader(event, 'authorization');
+  const airtableParishService = new AirtableService(config.ugNuBaseId, parishTable);
+  const airtableGroupService = new AirtableService(config.ugCnuBaseId, groupTable);
+
+  const authHeader = getHeader(event, 'authorization'); // Get the JWT token from the request
+
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     throw createError({
       statusCode: 401,
@@ -29,29 +33,68 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    let records = [];
-    let offset = null;
+    const query = getQuery(event);
+    const activity = query.activity || "Potted";
+    // Fetch parishes
+    const parishes = await airtableParishService.fetchAllRecords(parishView);
 
-    do {
-      const url = `https://api.airtable.com/v0/${config.ugNuBaseId}/${encodedTableName}?view=${encodedView}${offset ? `&offset=${offset}` : ''}`;
-      console.log(url);
-      const response = await $fetch(url, {
-        headers: {
-          Authorization: `Bearer ${config.airtableApiKey}`, // Airtable API key from config
-        },
+    // Fetch groups
+    const groups = await airtableGroupService.fetchAllRecords(groupView);
+
+    // Combine data
+    const assignedGroups = {};
+
+    parishes.forEach((parish) => {
+      const parishID = parish.fields["ID"];
+      const parishName = parish.fields["Parish Name"];
+      const pc = parish.fields["PC-Name"];
+      const branch = parish.fields["Branch"];
+      const pEmail = parish.fields["PC-Email"];
+      assignedGroups[parishName] = {
+        coordinator: pc,
+        pemail: pEmail,
+        branch: branch,
+        groups: {},
+        total: 0,
+      };
+
+      groups.forEach((group) => {
+        if (group.fields["Parish ID"] === parishID) {
+          const groupName = group.fields["Group Name"];
+          const activityCount = group.fields[`Total ${activity}`]; // Dynamically get the field for the activity
+
+          assignedGroups[parishName].groups[groupName] = {
+            ...group.fields,
+          };
+
+          assignedGroups[parishName].total += activityCount || 0;
+        }
       });
+    });
 
-      records = records.concat(response.records);
-      offset = response.offset;
-    } while (offset);
+    // Rank parishes
+    const rankedParishes = rankParishes(assignedGroups);
+    console.log(rankedParishes[0])
 
-    return records;
+    // return { activity, rankedParishes };
+    return rankedParishes;
   } catch (error) {
-    console.error('Error fetching records:', error);
+    console.error('Error fetching or processing records:', error);
     throw createError({
       statusCode: 500,
-      statusMessage: 'Failed to fetch records',
+      statusMessage: 'Failed to fetch or process records',
       data: error,
     });
   }
 });
+
+// Helper function for ranking
+function rankParishes(assignedGroups) {
+  return Object.entries(assignedGroups)
+    .sort((a, b) => b[1].total - a[1].total)
+    .map(([name, data], index) => ({
+      rank: index + 1,
+      parish: name,
+      ...data,
+    }));
+}

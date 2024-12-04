@@ -18,10 +18,7 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Bad Request: Email is required',
       });
     }
-
-
     const response = await airtableService.fetchWithFormula(`{Email} = "${email}"`, staffView);
-
 
     const user = response.length > 0 ? response[0] : null;
 
@@ -38,6 +35,8 @@ export default defineEventHandler(async (event) => {
       jwtSecret,
       { expiresIn: '1h' }
     );
+
+    console.log(token)
 
     // Respond with the token and user info
     return {

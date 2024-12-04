@@ -8,7 +8,13 @@ const props = defineProps({
     },
     parish: {
         type: Object,
-        default: 'Modal Title',
+        default: () => ({
+            parish: 'Default Parish',
+            rank: 0,
+            coordinator: 'No Coordinator',
+            branch: 'No Branch',
+            groups: {},
+        }),
     },
 });
 
@@ -22,8 +28,7 @@ const closeModal = () => {
 <template>
     <div class="fixed inset-0 z-50 flex items-center justify-center" :class="isOpen ? 'block' : 'hidden'">
         <!-- Overlay -->
-        <div class="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-80 transition-opacity">
-        </div>
+        <div class="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-80 transition-opacity"></div>
 
         <!-- Modal Content -->
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-2xl w-full mx-4 transition-transform transform"
@@ -31,10 +36,17 @@ const closeModal = () => {
             <!-- Modal Header -->
             <div class="flex justify-between items-center border-b pb-3 dark:border-gray-700">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Parish: {{ parish.parish }}</h3>
-                <h3 class="dark:text-gray-300">Ranked:{{ parish.rank }} / {{ store.rankedParishes.length }} in {{
-                    store.activity ==
-                        'Potted' ? 'Potting' : store.activity == 'Pricked' ? 'pricking' : store.activity ==
-                            'Sorted' ? 'sorting' : 'Distribution' }}</h3>
+                <h3 class="dark:text-gray-300">
+                    Ranked: {{ parish.rank }} / {{ store.rankedParishes.length }} in {{
+                        store.activity == 'Potted'
+                            ? 'Potting'
+                            : store.activity == 'Pricked'
+                                ? 'Pricking'
+                                : store.activity == 'Sorted'
+                                    ? 'Sorting'
+                                    : 'Distribution'
+                    }}
+                </h3>
                 <button @click="closeModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
                     &times;
                 </button>
@@ -42,10 +54,13 @@ const closeModal = () => {
 
             <!-- Modal Body -->
             <div class="mt-4 text-gray-600 dark:text-gray-300">
-                <p class="font-bold">Parish Coordinator: <span class="font-normal">{{ parish.coordinator }}</span></p>
+                <p class="font-bold">
+                    Parish Coordinator: <span class="font-normal">{{ parish.coordinator }}</span>
+                </p>
 
-                <p class="mt-2 font-bold">Branch: <span class="font-normal">{{ parish.branch !== '' ?
-                    parish.branch : 'No Branch' }}</span></p>
+                <p class="mt-2 font-bold">
+                    Branch: <span class="font-normal">{{ parish.branch !== '' ? parish.branch : 'No Branch' }}</span>
+                </p>
 
                 <!-- Scrollable container for groups -->
                 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 overflow-auto h-64 2xl:h-96">
@@ -53,7 +68,7 @@ const closeModal = () => {
                         class="relative p-4 border border-green-400 rounded-lg m-2 text-sm">
                         <div class="flex justify-between">
                             <p class="font-bold text-sm">{{ groupKey }}</p>
-                            <div class="group ">
+                            <div class="group">
                                 <i class="fa fa-ellipsis-v"></i>
                                 <div class="hidden absolute inset-0 flex items-center justify-center group-hover:block">
                                     <div class="bg-green-400 p-4 text-sm rounded-lg text-white">
@@ -66,14 +81,14 @@ const closeModal = () => {
                             </div>
                         </div>
 
-                        <p class="text-sm">Number of visits: {{ group.visits }}</p>
+                        <p class="text-sm">Number of visits: {{ group.visits || 0 }}</p>
 
                         <!-- Centered Species Card -->
                         <hr class="my-2">
-                        <p>Potted: {{ group.potted.toLocaleString() }}</p>
-                        <p>Pricked: {{ group.pricked.toLocaleString() }}</p>
-                        <p>Sorted: {{ group.sorted.toLocaleString() }}</p>
-                        <p>Distributed: {{ group.distributed.toLocaleString() }}</p>
+                        <p>Potted: {{ (group['Total Potted'] || 0).toLocaleString() }}</p>
+                        <p>Pricked: {{ (group['Total Pricked'] || 0).toLocaleString() }}</p>
+                        <p>Sorted: {{ (group['Total Sorted'] || 0).toLocaleString() }}</p>
+                        <p>Distributed: {{ (group['Total Distributed'] || 0).toLocaleString() }}</p>
                     </div>
                 </div>
             </div>
