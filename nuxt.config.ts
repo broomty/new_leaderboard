@@ -14,6 +14,25 @@ export default defineNuxtConfig({
       ]
     }
   },
+  runtimeConfig: {
+    // Private runtime configuration (server-only)
+    airtableApiKey: process.env.AIRTABLE_API_KEY,
+    ugOpsBaseId: process.env.UG_OPS_BASE_ID,
+    ugNuBaseId: process.env.UG_NU_BASE_ID,
+    ugCnuBaseId: process.env.UG_CNU_BASE_ID,
+    jwtSecret: process.env.JWT_SECRET,
+    staffView: process.env.STAFF_VIEW,
+    staffTable: process.env.STAFF_TABLE,
+    parishView: process.env.PARISH_VIEW,
+    parishTable: process.env.PARISH_TABLE,
+    groupView: process.env.GROUP_VIEW,
+    groupTable: process.env.GROUP_TABLE,
+
+    // Public runtime configuration (accessible on server & client)
+    public: {
+      // Add any public-facing variables if needed
+    },
+  },
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss','@pinia/nuxt','@nuxtjs/color-mode','@pinia-plugin-persistedstate/nuxt'],
